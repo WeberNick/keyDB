@@ -1,0 +1,22 @@
+FIND_PACKAGE(Catch2 REQUIRED)
+
+SET(UNIT_TEST_LIST
+  write_buffer
+  storage_manager
+  database_operations
+  )
+ 
+foreach(NAME IN LISTS UNIT_TEST_LIST)
+  list(APPEND UNIT_TEST_SOURCE_LIST
+    tests_${NAME}.cc)
+endforeach()
+ 
+SET(TARGET_NAME ${CMAKE_PROJECT_NAME}_tests_main)
+ 
+ADD_EXECUTABLE(${TARGET_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/tests_main.cc ${CMAKE_CURRENT_SOURCE_DIR}/${UNIT_TEST_SOURCE_LIST})
+TARGET_LINK_LIBRARIES(${CMAKE_PROJECT_NAME}_tests_main 
+  Catch2::Catch2 
+  ${CMAKE_PROJECT_NAME}_lib 
+  -lstdc++fs
+  )
+ADD_TEST(NAME ${TARGET_NAME} COMMAND ${TARGET_NAME})
