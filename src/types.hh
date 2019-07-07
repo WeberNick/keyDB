@@ -196,7 +196,7 @@ class key_val_t final
             lMem = key_val().second.to_memory(lMem);
         }
         std::string to_string() const noexcept { return key().to_string() + " @ " + val().to_string() + " @ " + to_string_mod(type()); }
-        std::string to_string_f() const noexcept { return "Key: '" + key().to_string() + "', Value: '" + val().to_string() + "'"; }
+        std::string to_string_f() const noexcept { return "<'" + key().to_string() + "', '" + val().to_string() + "'>"; }
         friend std::ostream& operator<<(std::ostream& os, const key_val_t& t) noexcept
         {
             return os << t.to_string();

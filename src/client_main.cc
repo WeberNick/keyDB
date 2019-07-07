@@ -44,6 +44,7 @@ int main()
 
                 boost::asio::streambuf buf;
                 boost::asio::read_until(socket, buf, '\n');
+                std::cout << "Received: " << make_string(buf) << std::endl;
                 ans_vec = StringUtil::splitString(make_string(buf), ':');
                 status = ans_vec.at(0);
                 ans = ans_vec.at(1);
